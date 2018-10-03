@@ -1,6 +1,6 @@
 using System;
-using Microsoft.Entityframeworkcore;
-using Microsoft.Entityframework.sqlite;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Sqlite;
 
 namespace Buffteks
 {
@@ -16,7 +16,7 @@ namespace Buffteks
             optionsBuilder.UseSqlite(ConnectionString);
         }
 
-        public DBset<Student> Students {get; set;}
+        public DbSet<Student> Students {get; set;}
 
     }
 
