@@ -13,6 +13,7 @@ public class Client
 
     public string Phone {get;set;}
 
+    //public Organization Organization {get; set;}
 }
 
 }

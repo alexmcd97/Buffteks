@@ -15,8 +15,10 @@ public class Student
 
     public string Phonenumber {get;set;}
 
-    public Client Client {get; set;}
-    
+    public int TeamID {get; set;}
+
+    public Team Team {get; set;}
+
 }
 
 }
