@@ -19,6 +19,7 @@ namespace Buffteks
         }
 
         public DbSet<Student> Students {get; set;}
+        //public DbSet<Client> Clients {get; set;}
 
     }
 

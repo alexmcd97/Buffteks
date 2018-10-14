@@ -23,6 +23,14 @@ namespace Buffteks
                 
             };
 
+            Client g = new Client()
+            {
+                ClientID = 1,
+                ClientName = "Ronald McDonald",
+                Phone = "555-555-5556",
+                Organization = new Organization {OrganizationID = 1, OrgName = "McDonald's"}
+            };
+
 
             using(var db = new AppDbContext())
             {
@@ -36,8 +44,17 @@ namespace Buffteks
                 if (!db.Students.Any())
                 {
                 db.Students.Add(s);
+
                 Console.WriteLine("Database Seeded.");
                 }
+                
+                /*
+                if (!db.Clients.Any())
+                {
+                db.Clients.Add(g);
+                Console.WriteLine("Database Seeded.");
+                }
+                */
                 db.SaveChanges();
                 }
                
@@ -46,49 +63,32 @@ namespace Buffteks
             while(true)
             {
                 //Program Menu Loop
-                Console.WriteLine("Press Y to input student data, X to Exit, Z to View Student data.");
+                Console.WriteLine(
+                "\nPress Y to input student data, \nUS to Update a Student's Data, \nS to Search for a Specific Student's Data, \nV to View ALL Student data, \nX to Exit.");
                 string test = Console.ReadLine();
                 if(test == "Y")
                 {
-                    string fname, lname, pnumber;
-                    //Take and store input for student variables.
-                    Console.WriteLine("Enter the Student's First Name.");
-                    fname = Console.ReadLine();
-
-                    Console.WriteLine("Enter the Student's Last Name.");
-                    lname = Console.ReadLine();
-
-                    Console.WriteLine("Enter the Student's Phone Number.");
-                    pnumber = Console.ReadLine();
-
-                    //Add new student data to database
-                    using(var db = new AppDbContext())
-                    {
-                        Student f = new Student()
-                        {
-                            FirstName = fname,
-                            LastName = lname,
-                            Phonenumber = pnumber,
-                            TeamID = 1,
-                        };
-
-                        db.Students.Add(f);
-                        db.SaveChanges();
-                    }
+                    Commands.InputStudent();
                 }
-                else if (test == "Z")
+                else if (test == "V")
                 {
-                    //Display all current student data
-                    using(var db = new AppDbContext())
-                    {
-                        foreach (var Student in db.Students)
-                        {
-                            Console.WriteLine($"Student {Student.StudentID}");
-                            Console.WriteLine($"First Name: {Student.FirstName}");
-                            Console.WriteLine($"Last Name: {Student.LastName}");
-                            Console.WriteLine($"Phone Number: {Student.Phonenumber}");
-                        }
-                    }
+                    Commands.DisplayAllStudent();
+                }
+                else if (test == "ZC")
+                {
+                    Commands.DisplayAllClient();
+                }
+                else if (test == "C")
+                {
+                    Commands.InputClient();
+                }
+                else if (test == "S")
+                {
+                    Commands.SearchStudent();
+                }
+                else if (test == "US")
+                {
+                    Commands.UpdateStudent();
                 }
                 else if (test == "X")
                 {
